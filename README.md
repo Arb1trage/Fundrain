@@ -1,5 +1,5 @@
 # Fund-rain
-Fund-rain is a simple CLI Web3 wallet funding/distribution tool, targetted towards multiwallet sniper software users and written in Python.
+Fund-rain is a simple Web3 CLI wallet generation/funding tool, targetted towards multiwallet sniper software users and written in Python.
 It helps snipers to avoid address blacklists, makes dev on-chain analysis more difficult and automates setting up for multiwallet snipe action.
 
 ## Features
