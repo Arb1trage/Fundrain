@@ -8,6 +8,7 @@ It helps snipers to avoid address blacklists, makes dev on-chain analysis more d
 - Generate multiple, ERC-20 compatible wallets
 - Export wallet information to file in sniper-specific format (Coyote, Brownie, PGTS etc.)
 - Fund addresses with desired amount of base cryptocurrency from source wallet
+- Supports most EVM-compatible blockchains 
 - Keep your OPSEC clean when sniping to avoid blacklists and on-chain analysis
 
 ## Usage
