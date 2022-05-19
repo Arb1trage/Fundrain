@@ -52,4 +52,4 @@ then execute like any other .py script:
 chmod +x fundrain.py
 ./fundrain.py [OPTIONS]
 ```
-NOTE: Tool was programmed for Python 3.10, but should work with any Python 3.x version.
+NOTE: Tool was programmed to use with Python 3.10, but should work with any Python 3.x version.
