@@ -43,13 +43,13 @@ options:
 ```
 
 ## Installation
-Use provided fundrain.exe binary that has built-in dependencies.
-
-OR
-
-Install dependencies if you want to use your own Python interpreter:
+Install dependencies listed in requirements.txt:
 ```sh
 python3 -m pip install -r requirements.txt
 ```
-
+then execute like any other .py script:
+```sh
+chmod +x fundrain.py
+./fundrain.py [OPTIONS]
+```
 NOTE: Tool was programmed for Python 3.10, but should work with any Python 3.x version.
