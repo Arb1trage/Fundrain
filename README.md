@@ -13,7 +13,7 @@ It helps snipers to avoid address blacklists, makes dev on-chain analysis more d
 
 ## Usage
 ```
-usage: SniperGen.exe [-h] [-V, --version] -w WALLET_QUANT -c {BSC,ETH,CRO,FTM,AVAX,POLY,mADA} [-a AMOUNT] [-m MOTHER_KEY] [-g CUSTOM_GAS] [-y]
+usage: fundrain.py [-h] [-V, --version] -w WALLET_QUANT -c {BSC,ETH,CRO,FTM,AVAX,POLY,mADA} [-a AMOUNT] [-m MOTHER_KEY] [-g CUSTOM_GAS] [-y]
 
 options:
   -h, --help            show this help message and exit
