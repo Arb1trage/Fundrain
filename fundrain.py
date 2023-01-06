@@ -65,8 +65,8 @@ def validate_wallet_quant(user_input: str):
 
 def validate_chain(user_input: str):
     try:
-        if user_input in NETWORKS.keys():
-            return user_input
+        if user_input.upper() in NETWORKS.keys():
+            return user_input.upper()
         else:
             raise ValueError
     except (TypeError, ValueError):
@@ -115,9 +115,9 @@ def print_wallets(wallets: list, chain: str):
     for idx, wallet in enumerate(wallets):
         balance_in_eth = W3.fromWei(W3.eth.get_balance(wallet._address),'ether')
         if idx == 0:
-            print(f"{chain}_{idx} {wallet._address} ({balance_in_eth} {NETWORKS[args.chain]['ticker']}) (Mother)")
+            print(f"{(wallet._private_key).hex()[2:]} {chain}_{idx} {wallet._address} ({balance_in_eth} {NETWORKS[args.chain]['ticker']}) (Mother)")
         else:
-            print(f"{chain}_{idx} {wallet._address} ({balance_in_eth} {NETWORKS[args.chain]['ticker']})")
+            print(f"{(wallet._private_key).hex()[2:]} {chain}_{idx} {wallet._address} ({balance_in_eth} {NETWORKS[args.chain]['ticker']})")
     print()
              
              
