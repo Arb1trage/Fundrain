@@ -156,7 +156,6 @@ def transfer(chain, wallet_from, wallet_to, amount, custom_gas=None):
         'nonce': W3.eth.get_transaction_count(wallet_from._address),
         'chainId': NETWORKS[chain]['chain_id']
     }
-    
     if custom_gas is not None:
         raw_tx['gasPrice'] = W3.toWei(custom_gas, 'gwei')
     raw_tx['gas'] = W3.eth.estimateGas(raw_tx)
