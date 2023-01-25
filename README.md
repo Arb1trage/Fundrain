@@ -1,9 +1,16 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-# Fundrain
+## Table of Contents
+
++ [About](#about)
++ [Features](#features)
++ [Usage](#usage)
++ [Installation](#installation)
+
+## About <a name = "about"></a>
 Fundrain is a CLI crypto wallet generation/funding tool, targetted towards trading software users. It is written in Python.
 It helps snipers to avoid address blacklists, makes on-chain analysis more difficult and enables multiple wallet generation/management.
 
-## Features
+## Features <a name = "features"></a>
 
 - Generate multiple, ERC-20 compatible wallets
 - Export wallet information to file in sniper-specific format (Coyote, Brownie, PGTS etc.)
@@ -11,7 +18,7 @@ It helps snipers to avoid address blacklists, makes on-chain analysis more diffi
 - Supports most EVM-compatible blockchains 
 - Keep your OPSEC clean when sniping to avoid blacklists and on-chain analysis
 
-## Usage
+## Usage <a name = "usage"></a>
 ```
 usage: fundrain.py [-h] [-V, --version] -w WALLET_QUANT -c {BSC,ETH,CRO,FTM,AVAX,POLY,mADA} [-a AMOUNT] [-m MOTHER_KEY] [-g CUSTOM_GAS] [-y]
 
@@ -42,7 +49,7 @@ options:
   -y                    Optional. Disables prompting for permission on each transaction.
 ```
 
-## Installation
+## Installation <a name = "installation"></a>
 Install dependencies listed in requirements.txt:
 ```sh
 python3 -m pip install -r requirements.txt
