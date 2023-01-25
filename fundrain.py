@@ -148,17 +148,19 @@ def transfer(chain, wallet_from, wallet_to, amount, custom_gas=None):
         (string, HexBytes): A tuple containing, respectively, a string (transaction URL) and HexBytes (transaction hash).
     """
 
-    tx = {
-        'chainId': NETWORKS[chain]['chain_id'],
-        'nonce': W3.eth.get_transaction_count(wallet_from._address),
+    raw_tx= {
+        'from': wallet_from._address,
         'to': wallet_to._address,
         'value': W3.toWei(amount, 'ether'),
-        'gas': 21000,
-        'gasPrice': W3.eth.gasPrice
+        'gasPrice': W3.eth.gasPrice,
+        'nonce': W3.eth.get_transaction_count(wallet_from._address),
+        'chainId': NETWORKS[chain]['chain_id']
     }
+    
     if custom_gas is not None:
-        tx['gasPrice'] = W3.toWei(custom_gas, 'gwei')
-    signed_tx = wallet_from.sign_transaction(tx)
+        raw_tx['gasPrice'] = W3.toWei(custom_gas, 'gwei')
+    raw_tx['gas'] = W3.eth.estimateGas(raw_tx)
+    signed_tx = wallet_from.sign_transaction(raw_tx)
     tx_hash = W3.eth.send_raw_transaction(signed_tx.rawTransaction)
     tx_link = f"{NETWORKS[chain]['explorer']}{W3.toHex(tx_hash)}"
     return (tx_link, tx_hash)
