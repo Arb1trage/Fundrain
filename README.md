@@ -58,7 +58,6 @@ python3 -m pip install -r requirements.txt
 ```
 then execute like any other .py script:
 ```sh
-chmod +x fundrain.py
-./fundrain.py [OPTIONS]
+python fundrain.py [OPTIONS]
 ```
 NOTE: Tool was programmed to use with Python 3.10, but should work with any Python 3.x version.
