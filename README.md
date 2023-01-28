@@ -10,7 +10,7 @@ It helps snipers to avoid address blacklists, makes on-chain analysis more diffi
 + [Features](#features)
 + [Usage](#usage)
 + [Installation](#installation)
-+ 
+
 ## Features <a name = "features"></a>
 
 - Generate multiple, ERC-20 compatible wallets
