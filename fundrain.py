@@ -20,7 +20,7 @@ NETWORKS = {
 # TESTNETS
 # NETWORKS = {
 #     'BSC': {'rpc': 'https://data-seed-prebsc-1-s1.binance.org:8545', 'chain_id': 97, 'explorer': 'https://testnet.bscscan.com/tx/', 'ticker': 'BNB'},
-#     'ETH': {'rpc': 'https://ropsten.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161', 'chain_id': 3, 'explorer': 'https://ropsten.etherscan.io/tx/', 'ticker': 'ETH'},  
+#     'ETH': {'rpc': 'https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161', 'chain_id': 5, 'explorer': 'https://goerli.etherscan.io/tx/', 'ticker': 'ETH'},  
 #     'CRO': {'rpc': 'https://cronos-testnet-3.crypto.org:8545/', 'chain_id': 338, 'explorer': 'https://cronos.org/explorer/testnet3/tx/', 'ticker': 'CRO'},
 #     'FTM': {'rpc': 'https://rpc.testnet.fantom.network', 'chain_id': 4002, 'explorer': 'https://testnet.ftmscan.com/tx/', 'ticker': 'FTM'},
 #     'AVAX': {'rpc': 'https://api.avax-test.network/ext/bc/C/rpc', 'chain_id': 43113, 'explorer': 'https://testnet.snowtrace.io/tx/', 'ticker': 'AVAX'},
