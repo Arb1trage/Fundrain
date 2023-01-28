@@ -54,7 +54,7 @@ options:
 ## Installation <a name = "installation"></a>
 Install dependencies listed in requirements.txt:
 ```sh
-python3 -m pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 then execute like any other .py script:
 ```sh
