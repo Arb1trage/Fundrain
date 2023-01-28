@@ -14,7 +14,7 @@ NETWORKS = {
     'FTM': {'rpc': 'https://rpc.fantom.network', 'chain_id': 250, 'explorer': 'https://cronoscan.com/tx/', 'ticker': 'FTM'},
     'AVAX': {'rpc': 'https://api.avax.network/ext/bc/C/rpc', 'chain_id': 43114, 'explorer': 'https://snowtrace.io/tx/', 'ticker': 'AVAX'},
     'POLY': {'rpc': 'https://polygon-rpc.com', 'chain_id': 137, 'explorer': 'https://polygonscan.com/tx/', 'ticker': 'MATIC'},
-    'mADA': {'rpc': 'https://rpc-mainnet-cardano-evm.c1.milkomeda.com/', 'chain_id': 2001, 'explorer': 'https://explorer-mainnet-cardano-evm.c1.milkomeda.com/tx/', 'ticker': 'mADA'}
+    'MADA': {'rpc': 'https://rpc-mainnet-cardano-evm.c1.milkomeda.com/', 'chain_id': 2001, 'explorer': 'https://explorer-mainnet-cardano-evm.c1.milkomeda.com/tx/', 'ticker': 'mADA'}
 }
 
 # TESTNETS
@@ -25,7 +25,7 @@ NETWORKS = {
 #     'FTM': {'rpc': 'https://rpc.testnet.fantom.network', 'chain_id': 4002, 'explorer': 'https://testnet.ftmscan.com/tx/', 'ticker': 'FTM'},
 #     'AVAX': {'rpc': 'https://api.avax-test.network/ext/bc/C/rpc', 'chain_id': 43113, 'explorer': 'https://testnet.snowtrace.io/tx/', 'ticker': 'AVAX'},
 #     'POLY': {'rpc': 'https://matic-mumbai.chainstacklabs.com', 'chain_id': 80001, 'explorer': 'https://mumbai.polygonscan.com/tx/', 'ticker': 'MATIC'},          
-#     'mADA': {'rpc': 'https://rpc-devnet-cardano-evm.c1.milkomeda.com/', 'chain_id': 200101, 'explorer': 'https://explorer-devnet-cardano-evm.c1.milkomeda.com/tx/', 'ticker': 'mADA'}   
+#     'MADA': {'rpc': 'https://rpc-devnet-cardano-evm.c1.milkomeda.com/', 'chain_id': 200101, 'explorer': 'https://explorer-devnet-cardano-evm.c1.milkomeda.com/tx/', 'ticker': 'mADA'}   
 # }
 
 
@@ -45,7 +45,7 @@ def validate_float(user_input: str):
         if amount > 0:
             return amount
         else:
-            return ValueError
+            raise ValueError
     except (TypeError, ValueError):
         print("Error: Amount and/or gas price must be positive numbers.")
         exit()
@@ -104,7 +104,6 @@ def export_wallets(wallets: list, chain:str):
                 pub_addr = (wallet._address)
                 file.write(f"{priv_key} {chain}_{idx} {pub_addr}\n")
         print(f"\nWallets successfully exported to file: {file.name}\n")
-        Path()
     except Exception as e:
         print(f"Error while exporting wallets: {repr(e)}")
         exit()
@@ -148,18 +147,17 @@ def transfer(chain, wallet_from, wallet_to, amount, custom_gas=None):
         (string, HexBytes): A tuple containing, respectively, a string (transaction URL) and HexBytes (transaction hash).
     """
 
-    raw_tx= {
-        'from': wallet_from._address,
+    tx = {
+        'chainId': NETWORKS[chain]['chain_id'],
+        'nonce': W3.eth.get_transaction_count(wallet_from._address),
         'to': wallet_to._address,
         'value': W3.toWei(amount, 'ether'),
-        'gasPrice': W3.eth.gasPrice,
-        'nonce': W3.eth.get_transaction_count(wallet_from._address),
-        'chainId': NETWORKS[chain]['chain_id']
+        'gas': 21000,
+        'gasPrice': W3.eth.gasPrice
     }
     if custom_gas is not None:
-        raw_tx['gasPrice'] = W3.toWei(custom_gas, 'gwei')
-    raw_tx['gas'] = W3.eth.estimateGas(raw_tx)
-    signed_tx = wallet_from.sign_transaction(raw_tx)
+        tx['gasPrice'] = W3.toWei(custom_gas, 'gwei')
+    signed_tx = wallet_from.sign_transaction(tx)
     tx_hash = W3.eth.send_raw_transaction(signed_tx.rawTransaction)
     tx_link = f"{NETWORKS[chain]['explorer']}{W3.toHex(tx_hash)}"
     return (tx_link, tx_hash)
@@ -241,7 +239,7 @@ if __name__ == "__main__":
         'newly generated sniper addresses.')
     parser.add_argument('-V, --version',
                         action='version',
-                        version='SniperGenerator by Arb1trage - Version 1.0')
+                        version='Fundrain by Arb1trage - Version 1.01')
     parser.add_argument('-w', '--wallets',
                         dest='wallet_quant',
                         type=validate_wallet_quant,
